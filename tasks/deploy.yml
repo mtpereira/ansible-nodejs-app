@@ -1,0 +1,47 @@
+---
+- name: deploy - fetch source
+  git:
+    repo: "{{ nodejs_app_repo }}"
+    dest: "{{ nodejs_app_path }}/{{ nodejs_app_name }}"
+    clone: yes
+    accept_hostkey: yes
+    version: "{{ nodejs_app_version }}"
+  become: yes
+  register: nodejs_app_clone
+  notify: nodejs_app - restart
+
+- name: deploy - npm install
+  npm:
+    path: "{{ nodejs_app_path }}/{{ nodejs_app_name }}"
+    global: no
+    production: yes
+    state: latest
+  become: yes
+  when: nodejs_app_clone.changed
+  notify: nodejs_app - restart
+
+- name: deploy - env config
+  template:
+    dest: "/etc/default/{{ nodejs_app_name }}"
+    src: env.j2
+    owner: root
+    group: root
+    mode: 0644
+  notify: nodejs_app - restart
+
+- name: deploy - upstart script
+  template:
+    dest: "/etc/init/{{ nodejs_app_name }}.conf"
+    src: init.j2
+    owner: root
+    group: root
+    mode: 0644
+  notify: nodejs_app - restart
+
+- name: deploy - start app
+  service:
+    name: "{{ nodejs_app_name }}"
+    state: started
+  when: nodejs_app_force_start
+  become: yes
+

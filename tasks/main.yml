@@ -1,0 +1,9 @@
+---
+- include: prepare.yml
+  become: yes
+  tags: nodejs_app_prepare
+
+- include: deploy.yml
+  become: yes
+  tags: nodejs_app_deploy
+

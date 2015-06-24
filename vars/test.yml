@@ -1,0 +1,5 @@
+---
+nodejs_app_name: node-js-sample
+nodejs_app_repo: https://github.com/heroku/node-js-sample
+nodejs_app_bin: index.js
+

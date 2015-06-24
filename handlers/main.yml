@@ -1,0 +1,7 @@
+---
+- name: nodejs_app - restart
+  service:
+    name: "{{ nodejs_app_name }}"
+    state: restarted
+  become: yes
+

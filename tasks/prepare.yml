@@ -1,0 +1,32 @@
+---
+- name: prepare - check if path exists
+  stat:
+    path: "{{ nodejs_app_path | dirname }}"
+  register: nodejs_app_check_path
+
+- name: prepare - create path if necessary
+  file:
+    dest: "{{ nodejs_app_path | dirname }}"
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+  become: yes
+  when: not nodejs_app_check_path.stat.exists
+
+- name: prepare - create app user group
+  group:
+    name: "{{ nodejs_app_user }}"
+    system: yes
+    state: present
+
+- name: prepare - create app user
+  user:
+   name: "{{ nodejs_app_user }}"
+   home: "{{ nodejs_app_path }}"
+   createhome: yes
+   group: "{{ nodejs_app_user }}"
+   shell: /bin/false
+   system: yes
+   state: present
+

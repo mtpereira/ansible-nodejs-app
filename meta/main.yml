@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: Manuel Tiago Pereira
+  description: Deploy nodejs applications.
+  license: BSD
+  min_ansible_version: 1.9
+  platforms:
+  - name: Ubuntu
+    versions:
+    - trusty
+  categories:
+  - web
+dependencies:
+  - role: nodesource.node
+    nodejs_nodesource_pin_priority: "{{ nodejs_app_node_pin_priority }}"
+    when: nodejs_app_install_node
+    become: yes
+    tags: nodejs_app_install
+

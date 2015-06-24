@@ -1,0 +1,8 @@
+---
+nodejs_app_user: nodejs
+nodejs_app_path: /var/www/nodejs
+nodejs_app_version: master
+nodejs_app_env: []
+nodejs_app_install_node: yes
+nodejs_app_force_start: no
+

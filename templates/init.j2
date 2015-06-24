@@ -1,0 +1,14 @@
+# Managed by Ansible, do not edit!
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+setuid {{ nodejs_app_user }}
+setgid {{ nodejs_app_user }}
+
+script
+  . /etc/default/{{ nodejs_app_name }}
+  chdir {{ nodejs_app_path }}/{{ nodejs_app_name }}
+  exec {{ nodejs_app_bin }}
+end script
+
