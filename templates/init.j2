@@ -9,6 +9,9 @@ setgid {{ nodejs_app_user }}
 script
   . /etc/default/{{ nodejs_app_name }}
   chdir {{ nodejs_app_path }}/{{ nodejs_app_name }}
+{% if nodejs_app_pidfile is defined and nodejs_app_pidfile != "" %}
+  echo $$ > {{ nodejs_app_pidfile }}
+{% endif %}
   exec {{ nodejs_app_bin }}
 end script
 
