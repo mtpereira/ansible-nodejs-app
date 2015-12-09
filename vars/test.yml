@@ -3,4 +3,6 @@ nodejs_app_name: node-js-sample
 nodejs_app_repo: https://github.com/heroku/node-js-sample
 nodejs_app_bin: "node index.js"
 nodejs_app_pidfile: "{{ nodejs_app_path }}/{{ nodejs_app_name }}.pid"
+nodejs_app_packages:
+  - git
 
