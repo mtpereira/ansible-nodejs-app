@@ -5,4 +5,5 @@ nodejs_app_version: master
 nodejs_app_env: []
 nodejs_app_install_node: yes
 nodejs_app_force_start: no
+nodejs_app_force_install: no
 
