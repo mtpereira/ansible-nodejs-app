@@ -17,7 +17,7 @@
     production: yes
     state: latest
   become: yes
-  when: nodejs_app_clone.changed
+  when: nodejs_app_clone.changed or nodejs_app_force_install
   notify: nodejs_app - restart
 
 - name: deploy - env config

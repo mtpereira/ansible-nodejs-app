@@ -5,4 +5,5 @@ nodejs_app_bin: "node index.js"
 nodejs_app_pidfile: "{{ nodejs_app_path }}/{{ nodejs_app_name }}.pid"
 nodejs_app_packages:
   - git
+nodejs_app_force_install: yes
 
