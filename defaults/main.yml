@@ -6,4 +6,5 @@ nodejs_app_env: []
 nodejs_app_install_node: yes
 nodejs_app_force_start: no
 nodejs_app_force_install: no
+nodejs_app_clone_user: "{{ nodejs_app_user }}"
 

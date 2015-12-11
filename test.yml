@@ -17,3 +17,16 @@
   roles:
     - .
 
+- name: tests - run tests
+  hosts: all
+
+  tasks:
+    - name: tests - check if deployed app is owned by nodejs user
+      stat:
+        path: "/var/www/nodejs/node-js-sample"
+      register: nodejs_app_test_clone_user
+
+    - name: tests - assert that deployed app is owned by nodejs user
+      assert:
+        that: "nodejs_app_test_clone_user.stat.pw_name == 'nodejs'"
+
