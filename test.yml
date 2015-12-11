@@ -5,15 +5,19 @@
   vars_files:
     - vars/test.yml
 
-  pre_tasks:
-    - name: install git
-      apt:
-        pkg: git
-        update_cache: yes
-        cache_valid_time: 3600
-        state: installed
-      become: yes
-
   roles:
     - .
+
+- name: tests - run tests
+  hosts: all
+
+  tasks:
+    - name: tests - check if deployed app is owned by nodejs user
+      stat:
+        path: "/var/www/nodejs/node-js-sample"
+      register: nodejs_app_test_clone_user
+
+    - name: tests - assert that deployed app is owned by nodejs user
+      assert:
+        that: "nodejs_app_test_clone_user.stat.pw_name == 'nodejs'"
 

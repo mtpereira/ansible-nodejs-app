@@ -23,6 +23,8 @@ Required variables:
 * `nodejs_app_install_node`: Enables or disables installing nodejs via the `nodesource.node` role. Defaults to `yes`.
 * `nodejs_app_force_start`: Force start of the app by the end of the playbook, regardless the presence of changes. Defaults to `no`.
 * `nodejs_app_pidfile`: Writes a PID file via the init script. It has no default value and, therefor, does not writes a PID file.
+* `nodejs_app_force_install`: Run `npm install` regardless of changes on the `git clone` task. Defaults to `no`.
+* `nodejs_app_clone_user`: User that will perform the `git clone`. Defaults to `{{ nodejs_app_user }}`.
 
 Internal variables, avoid changing:
 
