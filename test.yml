@@ -5,15 +5,6 @@
   vars_files:
     - vars/test.yml
 
-  pre_tasks:
-    - name: install git
-      apt:
-        pkg: git
-        update_cache: yes
-        cache_valid_time: 3600
-        state: installed
-      become: yes
-
   roles:
     - .
 
