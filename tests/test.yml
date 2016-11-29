@@ -3,10 +3,10 @@
   hosts: all
 
   vars_files:
-    - vars/test.yml
+    - vars.yml
 
   roles:
-    - .
+    - ../../
 
 - name: tests - run tests
   hosts: all
@@ -20,4 +20,3 @@
     - name: tests - assert that deployed app is owned by nodejs user
       assert:
         that: "nodejs_app_test_clone_user.stat.pw_name == 'nodejs'"
-

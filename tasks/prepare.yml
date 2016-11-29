@@ -36,7 +36,7 @@
     update_cache: yes
     cache_valid_time: 3600
     state: installed
-  with_items: nodejs_app_packages
+  with_items: "{{ nodejs_app_packages }}"
   when: nodejs_app_packages is defined and
         nodejs_app_packages != []
 
